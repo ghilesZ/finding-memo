@@ -1,8 +1,8 @@
 OASISFormat: 0.4
 Name:        ppx_memo
 Version:     0.01
-Synopsis:    ppx extension for lol
-Authors:     moi et remy
+Synopsis:    ppx extension for memoizing functions easily in ocaml
+Authors:     Ghiles Ziat et Rémy El Sibaïe Besognet
 License:     LGPL
 Plugins:     META (0.4), DevFiles (0.4)
 BuildTools:  ocamlbuild
