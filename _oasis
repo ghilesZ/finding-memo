@@ -1,0 +1,24 @@
+OASISFormat: 0.4
+Name:        ppx_memo
+Version:     0.01
+Synopsis:    ppx extension for lol
+Authors:     moi et remy
+License:     LGPL
+Plugins:     META (0.4), DevFiles (0.4)
+BuildTools:  ocamlbuild
+OCamlVersion: >= 4.02
+
+PreInstallCommand:   $ocamlfind install ppx_memo lib/META
+PreUninstallCommand: $ocamlfind remove ppx_memo
+
+Executable ppx_memo
+  Path:           ./
+  BuildDepends:
+    compiler-libs.common,
+    ppx_tools.metaquot
+  MainIs:         ppx_memo.ml
+  CompiledObject: best
+
+Test test_ppx_protobuf
+  Command:        ocamlbuild -use-ocamlfind -package unix -cflags '-ppx ./ppx_memo.native' test.byte
+  TestTools:      ppx_memo
