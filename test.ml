@@ -17,7 +17,7 @@ let%memo change_make = function
        match n-x with
        | 0 -> acc
        | x when x < 0 -> None
-       | x -> rendu x |> succ |> optmin acc
+       | x -> change_make x |> succ |> optmin acc
      in List.fold_left next None l
 
 let print fmt = function
@@ -33,4 +33,4 @@ let time f x =
 
 let _ =
   let x = 300 in
-  Format.printf "%a\n%!" print (time rendu x)
+  Format.printf "%a\n%!" print (time change_make x)
