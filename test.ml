@@ -12,7 +12,7 @@ let succ = function
 let change_make coins value =
   let%memo loop n =
     let next acc piece =
-      match n-piece with
+      match n - piece with
       | 0 -> Some 1
       | x -> if x < 0 then None
              else optmin (succ (loop x)) acc
