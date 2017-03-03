@@ -45,8 +45,7 @@ let memoizator f =
               Hashtbl.add tbl x res;
               x
 ```
-
-The trick here is to redefine a fixpoint combinator* and to handle the memoization inside it :
+The trick here is to redefine a fixpoint combinator¹ and to handle the memoization inside it :
 ```ocaml
 (* classic Y combinator *)
 let rec fix f x = f (fix f) x
@@ -78,13 +77,28 @@ let _ =
 Of course, no one wants to write functions that way, this why this syntax extension is needed.
 It allows you to simply replace the **let rec** in your code by **let%memo** to have memoized functions.
 
-Note : Recall : Note that the classical definiton of a recursive function using **let rec name = body** can be seen as sugar (in fact, it's not the case) for :
+[1] : Note that the classical definiton of a recursive function using **let rec name = body** can be seen as sugar (in fact, it's not the case) for :
 ```ocaml
 let rec fix f x = f (fix f) x
 
+(*equivalent to let rec name = body*)
 let name =
-  let recursor f = body in
+  let recursor name = body in
   fix recursor
 ```
 
 Here, we're doing quite the same thing using a memoizing fixpoint combinator :)
+
+#### How to test?
+##### Dependencies :
+- ocamlbuild
+- oasis
+
+##### build :
+```shell
+make test
+./test.native
+```
+
+### Usability
+This is the first time i try to write a ppx extension. Dont rely on this code, it's just a proof of concept.
